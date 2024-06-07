@@ -13,7 +13,7 @@ Otherwise, retrieve them from:
 
   e.g. ```docker pull ghcr.io/tps-ingenieria-de-sistemas/snippet-service:latest```
 
-I'd recomend doing the first option first and, if it doesn't work, the second one. However, I'm almost certain the second one works fine.
+I'd recomend doing the first option first and, if it doesn't work, the second one. I'm almost certain the second one works fine, but it may not be updated.
 
 
 
