@@ -1,5 +1,7 @@
 # infra
 
+I believe you can run the docker compose without any inconvenience. If that ain't working you may need, and I'm not sure, to pull the images docker-compose.yml is using, as shown below:
+
 I built the images to the Github Container Registry. 
 
 However, I think you can build the images locally from each repo without having to pull them:
