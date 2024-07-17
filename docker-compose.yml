@@ -95,3 +95,4 @@ services:
 volumes:
   blob:
     external: false
+  snippet-permits-db-data:
