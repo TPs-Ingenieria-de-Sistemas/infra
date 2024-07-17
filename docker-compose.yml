@@ -54,6 +54,15 @@ services:
       - snippet_service
       - asset_service
 
+  duckdns:
+    image: lscr.io/linuxserver/duckdns:version-9fc9520a
+    container_name: duckdns
+    environment:
+      - SUBDOMAINS=${SUBDOMAINS}
+      - TOKEN=${DUCKDNS_TOKEN}
+    restart: unless-stopped
+
+
 volumes:
   blob:
     external: false
