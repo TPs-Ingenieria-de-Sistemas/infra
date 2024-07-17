@@ -49,10 +49,10 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
-      - printscript_service
-      - snippet_permits
-      - snippet_service
-      - asset_service
+      - printscript-service
+      - snippet-permits
+      - snippet-service
+      - asset-service
 
   duckdns:
     image: lscr.io/linuxserver/duckdns:version-9fc9520a
