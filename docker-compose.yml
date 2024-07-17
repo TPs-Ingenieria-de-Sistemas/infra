@@ -1,29 +1,29 @@
 version: "3"
 
 services:
-  printscript_service:
-    container_name: "printscript_service"
+  printscript-service:
+    container_name: "printscript-service"
     image: ghcr.io/tps-ingenieria-de-sistemas/printscript-service:latest
     ports:
       - "8080:8080"
 
-  snippet_permits:
-    container_name: "snippet_permits"
+  snippet-permits:
+    container_name: "snippet-permits"
     image: ghcr.io/tps-ingenieria-de-sistemas/snippet-permits:latest
     ports:
-      - "8081:8080"
+      - "8081:8081"
 
-  snippet_service:
-    container_name: "snippet_service"
+  snippet-service:
+    container_name: "snippet-service"
     image: ghcr.io/tps-ingenieria-de-sistemas/snippet-service:latest
     ports:
-      - "8082:8080"
+      - "8082:8082"
 
-  asset_service:
-    container_name: "asset_service"
+  asset-service:
+    container_name: "asset-service"
     image: ghcr.io/austral-ingsis/snippet-asset-service:latest
     ports:
-      - "8083:8080"
+      - "8083:8083"
     environment:
       AZURE_HOST: "http://azurite"
       NEW_RELIC_AGENT_ENABLED: false
@@ -40,6 +40,19 @@ services:
       - "10002:10002"
     volumes:
       - blob:/workspace
+
+  nginx:
+    image: nginx:latest
+    container_name: "nginx"
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - printscript_service
+      - snippet_permits
+      - snippet_service
+      - asset_service
 
 volumes:
   blob:
