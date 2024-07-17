@@ -34,7 +34,7 @@ services:
     ports:
       - '5433:5433'
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - snippet-permits-db-data:/var/lib/postgresql/data
     healthcheck:
       test: [ 'CMD-SHELL', 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}' ]
       interval: 1s
