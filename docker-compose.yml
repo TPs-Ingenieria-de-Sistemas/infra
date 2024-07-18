@@ -75,13 +75,22 @@ services:
     container_name: "nginx"
     ports:
       - "80:80"
+      - 443:443
+    restart: always
     volumes:
       - ./conf.d:/etc/nginx/conf.d:ro
+      - ./certbot/www/:/var/www/certbot/:ro
     depends_on:
       - printscript-service
       - snippet-permits
       - snippet-service
       - asset-service
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
 
   duckdns:
     image: lscr.io/linuxserver/duckdns:version-9fc9520a
