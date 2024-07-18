@@ -86,6 +86,7 @@ services:
       - snippet-permits
       - snippet-service
       - asset-service
+      - duckdns
 
   certbot:
     image: certbot/certbot:latest
