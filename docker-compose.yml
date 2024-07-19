@@ -13,7 +13,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - PERMITS_SERVER_PORT=8081
+      - PORT=8081
       - POSTGRES_DOMAIN=snippet-permits-db
       - POSTGRES_DB=${PERMITS_POSTGRES_DB}
       - POSTGRES_USER=${PERMITS_POSTGRES_USER}
