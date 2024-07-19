@@ -48,6 +48,15 @@ services:
     image: ghcr.io/tps-ingenieria-de-sistemas/snippet-service:latest
     ports:
       - "8082:8082"
+    environment:
+      PORT: 8082
+      DB_USER: ${SNIPPET_POSTGRES_USER}
+      DB_PASSWORD: ${SNIPPET_POSTGRES_PASSWORD}
+      DB_NAME: ${SNIPPET_POSTGRES_DB}
+      DB_HOST: snippet-service-db
+      DB_PORT: 5432
+      AUTH0_API: ${AUTH0_API}
+      AUTH0_DOMAIN: ${AUTH0_DOMAIN}
 
   asset-service:
     container_name: "asset-service"
@@ -58,6 +67,24 @@ services:
       AZURE_HOST: "http://azurite"
       NEW_RELIC_AGENT_ENABLED: false
 
+  snippet-service-db:
+    image: postgres:alpine
+    container_name: "snippet-service-db"
+    restart: always
+    environment:
+      - POSTGRES_DB=${SNIPPET_POSTGRES_USER}
+      - POSTGRES_USER=${SNIPPET_POSTGRES_USER}
+      - POSTGRES_PASSWORD=${SNIPPET_POSTGRES_PASSWORD}
+      - PGPORT=5432
+    ports:
+      - '5432:5432'
+    volumes:
+      - snippet-service-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U ${PERMITS_POSTGRES_USER} -d ${PERMITS_POSTGRES_DB}' ]
+      interval: 1s
+      timeout: 1s
+      retries: 15
 
   azurite:
     image: mcr.microsoft.com/azure-storage/azurite
@@ -108,3 +135,4 @@ volumes:
   blob:
     external: false
   snippet-permits-db-data:
+  snippet-service-db-data:
