@@ -9,6 +9,8 @@ services:
       - VITE_BACKEND_URL=${SUBDOMAIN}.duckdns.org
       - VITE_AUTH0_USERNAME=${AUTH0_DOMAIN}
       - VITE_AUTH0_PASSWORD=${AUTH0_API}
+    env_file:
+      .env
 
   printscript-service:
     container_name: "printscript-service"
