@@ -1,4 +1,17 @@
 services:
+  printscript-ui:
+    container_name: printscript-ui
+    image: ghcr.io/tps-ingenieria-de-sistemas/printscript-ui:latest
+    ports:
+      - "80:80"
+    expose:
+      - 80
+    environment:
+      - VITE_FRONTEND_URL=${VITE_FRONTEND_URL}
+      - VITE_BACKEND_URL=${VITE_BACKEND_URL}
+      - VITE_AUTH0_USERNAME=${AUTH0_DOMAIN}
+      - VITE_AUTH0_PASSWORD=${AUTH0_API}
+
   printscript-service:
     container_name: "printscript-service"
     image: ghcr.io/tps-ingenieria-de-sistemas/printscript-service:latest
