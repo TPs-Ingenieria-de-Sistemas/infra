@@ -2,10 +2,8 @@ services:
   printscript-ui:
     container_name: printscript-ui
     image: ghcr.io/tps-ingenieria-de-sistemas/printscript-ui:latest
-    ports:
-      - "85:85"
     expose:
-      - 85
+      - 80
     environment:
       - VITE_FRONTEND_URL=${SUBDOMAIN}.duckdns.org
       - VITE_BACKEND_URL=${SUBDOMAIN}.duckdns.org
