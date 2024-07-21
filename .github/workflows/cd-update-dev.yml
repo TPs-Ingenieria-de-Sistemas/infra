@@ -7,7 +7,7 @@ on:
 
 jobs:
   connect-and-update-infra:
-    runs-on: linux
+    runs-on: ubuntu-latest
     steps:
       - name: connect-and-run
         uses: appleboy/ssh-action@master
