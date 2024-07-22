@@ -18,6 +18,8 @@ services:
     enviroment:
       REDIS_HOST: redis
       REDIS_PORT: 6379
+    dependes_on:
+      - redis
 
   snippet-permits:
     container_name: "snippet-permits"
@@ -73,6 +75,7 @@ services:
       REDIS_PORT: 6379
     depends_on:
       - snippet-service-db
+      - redis
 
   asset-service:
     container_name: "asset-service"
