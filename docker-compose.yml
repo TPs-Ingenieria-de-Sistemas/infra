@@ -15,7 +15,7 @@ services:
     image: ghcr.io/tps-ingenieria-de-sistemas/printscript-service:latest
     ports:
       - "8084:8084"
-    enviroment:
+    environment:
       PORT: 8084
       REDIS_HOST: redis
       REDIS_PORT: 6379
