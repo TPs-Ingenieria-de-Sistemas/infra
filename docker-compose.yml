@@ -14,8 +14,9 @@ services:
     container_name: "printscript-service"
     image: ghcr.io/tps-ingenieria-de-sistemas/printscript-service:latest
     ports:
-      - "8080:8080"
+      - "8084:8084"
     enviroment:
+      PORT: 8084
       REDIS_HOST: redis
       REDIS_PORT: 6379
     dependes_on:
