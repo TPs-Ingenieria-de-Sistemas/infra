@@ -68,6 +68,8 @@ services:
       DB_PORT: 5432
       AUTH0_API: ${AUTH0_API}
       AUTH0_DOMAIN: ${AUTH0_DOMAIN}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     depends_on:
       - snippet-service-db
 
