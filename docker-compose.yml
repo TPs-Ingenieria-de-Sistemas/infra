@@ -13,8 +13,11 @@ services:
   printscript-service:
     container_name: "printscript-service"
     image: ghcr.io/tps-ingenieria-de-sistemas/printscript-service:latest
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     ports:
-      - "8080:8080"
+      - "8084:8084"
 
   snippet-permits:
     container_name: "snippet-permits"
@@ -66,6 +69,8 @@ services:
       DB_PORT: 5432
       AUTH0_API: ${AUTH0_API}
       AUTH0_DOMAIN: ${AUTH0_DOMAIN}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     depends_on:
       - snippet-service-db
 
@@ -140,6 +145,11 @@ services:
       - TOKEN=${DUCKDNS_TOKEN}
     restart: unless-stopped
 
+  redis:
+    container_name: "redis"
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
 
 volumes:
   blob:
